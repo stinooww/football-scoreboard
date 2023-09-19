@@ -1,26 +1,19 @@
-table {
+.football-list {
   border-spacing: 20px;
   border: 1px solid black;
   border-collapse: collapse;
-  width: 200px;
-}
-th, td {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+  width: 600px;
 
-th {
-  background-color: #f2f2f2;
-}
+  th, td {
+    border: 1px solid gray;
+    text-align: left;
+    padding: 8px;
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
+  }
 
-img {
-  max-width: 50px;
-  max-height: 50px;
+  th {
+    background-color: #f2f2f2;
+  }
 }
 
 .football-list {
@@ -33,5 +26,14 @@ img {
   .football-list__body {
     display: flex;
     flex-direction: column;
+  }
+}
+
+.football-item {
+  display: table-row-group;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f2f2f2;
   }
 }

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FootballStanding} from "../../football-standing.model";
+import {FootballStanding} from "../../model/football-standing.model";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -9,7 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class FootballItemComponent implements OnInit {
   @Input() standing: FootballStanding | undefined;
-  @Input() index: number = 0;
+  @Input() index: number | undefined;
   constructor(private router: Router,
               private route: ActivatedRoute) { }
 

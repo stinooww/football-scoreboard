@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {FootballStanding} from "../football-standing.model";
+import {FootballStanding} from "../model/football-standing.model";
 import {FootballService} from "../football.service";
 
 @Component({
@@ -20,14 +20,16 @@ export class FootballListComponent implements OnInit, OnDestroy {
       .subscribe((params: Params) => {
         this.countryId = params['countryId'];
         if(this.countryId) {
-          this.countryStanding = this.footballService.getCountryInformation(this.countryId);
-          if (this.countryStanding && this.countryStanding.length === 0) {
+          const standings: FootballStanding[] = this.footballService.getCountryInformation(this.countryId);
+          if (standings && standings.length === 0) {
             this.standingSub = this.footballService.fetchStanding(this.countryId)
-              .subscribe((data: FootballStanding) => {
+              .subscribe((data: FootballStanding[]) => {
                 if(data) {
-                 this.countryStanding?.push(data);
+                  this.countryStanding = data;
                 }
             });
+          } else {
+           this.countryStanding = standings;
           }
         }
       });

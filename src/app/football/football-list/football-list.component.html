@@ -1,27 +1,22 @@
 <app-header></app-header>
 <table class="football-list" *ngIf="countryStanding && countryStanding.length > 0">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th>Name</th>
-      <th>Games</th>
-      <th>W</th>
-      <th>L</th>
-      <th>D</th>
-      <th>Goal difference</th>
-      <th>Points</th>
-    </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let standingEl of countryStanding | slice:0:10; let i = index">
-    <app-football-item
-      [standing]="standingEl"
-      [index]="i"
-      class="football-item"
-    >
-    </app-football-item>
+  <tr class="football-list__head">
+    <th></th>
+    <th></th>
+    <th>Name</th>
+    <th>Games</th>
+    <th>W</th>
+    <th>L</th>
+    <th>D</th>
+    <th>Goal difference</th>
+    <th>Points</th>
   </tr>
-  </tbody>
+  <app-football-item
+    *ngFor="let standingEl of countryStanding | slice:0:10 let i = index"
+    [standing]="standingEl"
+    [index]="i"
+    class="football-item"
+  >
+  </app-football-item>
 </table>
 

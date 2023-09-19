@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FootballListComponent } from './football/football-list/football-list.component';
-import {SharedModule} from "./shared/shared.module";
 import {FootballDetailModule} from "./football/football-detail/football-detail.module";
 import {FootballItemComponent} from "./football/football-list/football-item/football-item.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -25,7 +24,6 @@ import {NgOptimizedImage} from "@angular/common";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule,
     FootballDetailModule,
     NgOptimizedImage
   ],

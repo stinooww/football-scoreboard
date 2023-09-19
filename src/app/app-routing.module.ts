@@ -8,7 +8,7 @@ import {FootballDetailComponent} from "./football/football-detail/football-detai
 const routes: Routes = [
   { path: '', component: FootballComponent, pathMatch: 'full', resolve: [FootballResolverService]},
   { path: 'football/:countryId' , component: FootballListComponent},
-  { path: 'football/:countryId/:teamId' , component:FootballDetailComponent},
+  { path: 'football/:countryId/:teamId', component: FootballDetailComponent},
   { path: '**', redirectTo:''}
 ];
 
@@ -17,7 +17,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-// { path: 'football/:countryId/:teamId',
-//   loadChildren: () => import('./football/football-detail/football-detail.module').then(m => m.FootballDetailModule)
-// },

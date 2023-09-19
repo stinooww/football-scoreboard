@@ -1,13 +1,14 @@
 import {NgModule} from "@angular/core";
 import {FootballDetailComponent} from "./football-detail.component";
 import {RouterModule} from "@angular/router";
-import {SharedModule} from "../../shared/shared.module";
-
+import {FootballDetailService} from "./football-detail.service";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
     FootballDetailComponent
   ],
-  imports: [ RouterModule, SharedModule]
+  providers: [FootballDetailService],
+  imports: [RouterModule, CommonModule, NgOptimizedImage]
 })
 export class FootballDetailModule {}

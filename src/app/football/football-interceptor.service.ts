@@ -4,8 +4,7 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class FootballInterceptorService implements HttpInterceptor{
-  constructor() {
-  }
+  constructor() {}
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
   const footballApiKey= 'fd4182265ea9fa72eed8d00ea72d6427';
     if(footballApiKey) {

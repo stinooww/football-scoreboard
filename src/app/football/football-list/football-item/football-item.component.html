@@ -1,4 +1,4 @@
-<div (click)="onShowTeamsDetail(standing.team?.id)" *ngIf="standing">
+<tr (click)="onShowTeamsDetail(standing.team?.id)" *ngIf="standing">
   <td>{{index}}</td>
   <td *ngIf="standing.team && standing.team?.logo && standing.team?.name">
     <img ngSrc="{{standing.team.logo}}" width="30" height="30" alt="{{standing.team.name}}">
@@ -10,5 +10,8 @@
   <td>{{standing.all?.draw}}</td>
   <td>{{standing.goalsDiff}}</td>
   <td>{{standing.points}}</td>
-</div>
+</tr>
+
+
+
 
