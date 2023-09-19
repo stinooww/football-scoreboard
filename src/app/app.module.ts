@@ -1,26 +1,42 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { FootballListComponent } from './football/football-list/football-list.component';
-import { FootballItemComponent } from './football/football-item/football-item.component';
-import { FootballDetailComponent } from './football/football-detail/football-detail.component';
+import {SharedModule} from "./shared/shared.module";
+import {FootballDetailModule} from "./football/football-detail/football-detail.module";
+import {FootballItemComponent} from "./football/football-list/football-item/football-item.component";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {FootballService} from "./football/football.service";
+import {FootballHeaderComponent} from "./football/football-header/football-header.component";
+import {FootballComponent} from "./football/football.component";
+import {FootballInterceptorService} from "./football/football-interceptor.service";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    FootballComponent,
+    FootballHeaderComponent,
     FootballListComponent,
     FootballItemComponent,
-    FootballDetailComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    SharedModule,
+    FootballDetailModule,
+    NgOptimizedImage
   ],
-  providers: [],
+  providers: [
+    FootballService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FootballInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

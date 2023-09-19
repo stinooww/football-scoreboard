@@ -1,0 +1,26 @@
+.football-header {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  text-align: center;
+
+  .football-header__nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    list-style-type: none;
+    background-color: #E5E4E4FF;
+    border-radius: 25px;
+    padding: 20px;
+
+    .football-header__nav-item a{
+      text-decoration: none;
+      color: black;
+
+      &.active {
+        color: blue;
+        text-decoration: underline;
+      }
+    }
+  }
+}

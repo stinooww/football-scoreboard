@@ -1,1 +1,16 @@
-<p>football-detail works!</p>
+<table class="football-detail">
+  <tbody *ngIf="latestResultArr && latestResultArr.length > 0">
+    <tr *ngFor="let gameResult of latestResultArr">
+      <td><img src="{{gameResult.teams?.home?.logo}}" alt="{{gameResult.teams?.home?.name}}"></td>
+      <td>{{gameResult.teams?.home?.name}}</td>
+      <td>{{gameResult.goals?.home}}</td>
+      <td>-</td>
+      <td>{{gameResult.goals?.away}}</td>
+      <td>{{gameResult.teams?.away?.name}}</td>
+      <td><img src="{{gameResult.teams?.away?.logo}}" alt="{{gameResult.teams?.away?.name}}"></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<button id="backBtn" class="football-detail-btn" (click)="onGoBack()">Back</button>
