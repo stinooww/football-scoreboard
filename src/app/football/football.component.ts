@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-football',
-  templateUrl: './football.component.html',
+  template: '<app-football-list></app-football-list>',
 })
 export class FootballComponent implements OnInit {
 

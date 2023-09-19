@@ -1,16 +1,13 @@
-<table class="football-detail">
-  <tbody *ngIf="latestResultArr && latestResultArr.length > 0">
-    <tr *ngFor="let gameResult of latestResultArr">
-      <td><img ngSrc="{{gameResult.teams?.home?.logo}}" width="50" height="50" alt="{{gameResult.teams?.home?.name}}"></td>
-      <td>{{gameResult.teams?.home?.name}}</td>
-      <td>{{gameResult.goals?.home}}</td>
-      <td>-</td>
-      <td>{{gameResult.goals?.away}}</td>
-      <td>{{gameResult.teams?.away?.name}}</td>
-      <td><img ngSrc="{{gameResult.teams?.away?.logo}}" width="50" height="50" alt="{{gameResult.teams?.away?.name}}"></td>
-    </tr>
-  </tbody>
+<table class="football-detail" *ngIf="latestResultArr && latestResultArr.length > 0">
+  <tr *ngFor="let gameResult of latestResultArr">
+    <td><img ngSrc="{{gameResult.teams?.home?.logo}}" width="50" height="50" alt="{{gameResult.teams?.home?.name}}"></td>
+    <td>{{gameResult.teams?.home?.name}}</td>
+    <td>{{gameResult.goals?.home}}</td>
+    <td>-</td>
+    <td>{{gameResult.goals?.away}}</td>
+    <td>{{gameResult.teams?.away?.name}}</td>
+    <td><img ngSrc="{{gameResult.teams?.away?.logo}}" width="50" height="50" alt="{{gameResult.teams?.away?.name}}"></td>
+  </tr>
 </table>
-
 
 <button id="backBtn" class="football-detail-btn" (click)="onGoBack()">Back</button>

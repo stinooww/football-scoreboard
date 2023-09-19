@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {FootballListComponent} from "./football/football-list/football-list.component";
-import {FootballResolverService} from "./football/football-resolver.service";
+import {FootballResolverService} from "./football/service/football-resolver.service";
 import {FootballComponent} from "./football/football.component";
 import {FootballDetailComponent} from "./football/football-detail/football-detail.component";
 
