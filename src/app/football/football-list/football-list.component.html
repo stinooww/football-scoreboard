@@ -14,7 +14,7 @@
   <app-football-item
     *ngFor="let standingEl of countryStanding | slice:0:10 let i = index"
     [standing]="standingEl"
-    [index]="i"
+    [index]="i +1"
     class="football-item"
   >
   </app-football-item>
