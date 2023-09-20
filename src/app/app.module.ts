@@ -12,6 +12,7 @@ import {FootballInterceptorService} from "./football/service/football-intercepto
 import {NgOptimizedImage} from "@angular/common";
 import {FootballDetailComponent} from "./football/football-detail/football-detail.component";
 import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
+import {LocalStorageService} from "./football/service/local-storage.service";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.
   ],
   providers: [
     FootballService,
+    LocalStorageService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: FootballInterceptorService,

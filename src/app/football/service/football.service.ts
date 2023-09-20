@@ -4,6 +4,7 @@ import { FootballStanding } from "../model/football-standing.model";
 import { map, Observable} from "rxjs";
 import { FootballCountryRequest } from "../model/football-country.model";
 import {FootballFixture, FootballFixtureRequest} from "../model/football-fixture.model";
+import {LocalStorageService} from "./local-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import {FootballFixture, FootballFixtureRequest} from "../model/football-fixture
 export class FootballService {
   footballV3BaseUrl = 'https://v3.football.api-sports.io/';
   dataCreated = new Date();
-  constructor(protected http: HttpClient) { }
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
 
   fetchStanding(countryId: string): Observable<FootballStanding[]> {
     const year: number = this.calculateCurrentSeason();
@@ -21,7 +22,7 @@ export class FootballService {
         map( (response: FootballCountryRequest) => {
           const { standings } = response?.response?.[0]?.league || {};
           let countryStanding: FootballStanding[] = standings.flat(1);
-          this.setCountryInformation(countryId, countryStanding);
+          this.localStorageService.setCountryInformation(countryId, countryStanding);
           return countryStanding;
         })
     );
@@ -40,7 +41,7 @@ export class FootballService {
             latestResultArr.push({teams: teams, goals: goals});
           })
         }
-        this.setFixtureInformation(team.toString(), latestResultArr)
+        this.localStorageService.setFixtureInformation(team.toString(), latestResultArr)
         return latestResultArr;
       }));
   }
@@ -49,31 +50,5 @@ export class FootballService {
     const currentMonth = this.dataCreated.getMonth();
     const currentYear = this.dataCreated.getFullYear();
     return currentMonth < 7 ? currentYear - 1 : currentYear;
-  }
-
-  isDataOutdated(): boolean {
-    const previousDate = new Date(this.getStorageInformation("taskCreatedAt"));
-    const currentDate = this.dataCreated;
-    const differenceInTime = currentDate.getTime() - previousDate.getTime();
-    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
-    if (differenceInDays > 1) {
-      localStorage.clear();
-      return true;
-    }
-    return false;
-  }
-
-  getStorageInformation(key: string) {
-    return JSON.parse(localStorage.getItem(key) || '[]');
-  }
-
-  private setCountryInformation(key: string, footballStanding: FootballStanding[]): void {
-    localStorage.setItem(key, JSON.stringify(footballStanding));
-    localStorage.setItem("taskCreatedAt", JSON.stringify(this.dataCreated));
-  }
-
-  private setFixtureInformation(key: string, footballStanding: FootballFixture[]): void {
-    localStorage.setItem(key, JSON.stringify(footballStanding));
-    localStorage.setItem("taskCreatedAt", JSON.stringify(this.dataCreated));
   }
 }

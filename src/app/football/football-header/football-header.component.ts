@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
 import {FootballService} from "../service/football.service";
 
 @Component({
@@ -9,7 +8,7 @@ import {FootballService} from "../service/football.service";
 })
 export class FootballHeaderComponent implements OnInit{
   currentYear: number | undefined;
-  constructor(protected footballService: FootballService) { }
+  constructor(private footballService: FootballService) { }
 
   ngOnInit(): void {
      this.currentYear = this.footballService.calculateCurrentSeason();
