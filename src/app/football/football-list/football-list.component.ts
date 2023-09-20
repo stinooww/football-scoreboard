@@ -16,12 +16,13 @@ export class FootballListComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, private footballService: FootballService) { }
 
   ngOnInit(): void {
+    const isDataOutdated = this.footballService.isDataOutdated();
     this.route.params
       .subscribe((params: Params) => {
         this.countryId = params['countryId'];
         if(this.countryId) {
           const standings: FootballStanding[] = this.footballService.getStorageInformation(this.countryId);
-          if (standings && standings.length === 0) {
+          if (isDataOutdated || (standings && standings.length === 0)) {
             this.standingSub = this.footballService.fetchStanding(this.countryId)
               .subscribe((data: FootballStanding[]) => {
                 if(data) {

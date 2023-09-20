@@ -11,6 +11,7 @@ import {FootballComponent} from "./football/football.component";
 import {FootballInterceptorService} from "./football/service/football-interceptor.service";
 import {NgOptimizedImage} from "@angular/common";
 import {FootballDetailComponent} from "./football/football-detail/football-detail.component";
+import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {FootballDetailComponent} from "./football/football-detail/football-detai
     FootballHeaderComponent,
     FootballListComponent,
     FootballItemComponent,
-    FootballDetailComponent
+    FootballDetailComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

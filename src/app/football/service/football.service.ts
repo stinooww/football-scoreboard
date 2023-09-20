@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import { FootballStanding } from "../model/football-standing.model";
 import { map, Observable} from "rxjs";
 import { FootballCountryRequest } from "../model/football-country.model";
@@ -49,6 +49,18 @@ export class FootballService {
     const currentMonth = this.dataCreated.getMonth();
     const currentYear = this.dataCreated.getFullYear();
     return currentMonth < 7 ? currentYear - 1 : currentYear;
+  }
+
+  isDataOutdated(): boolean {
+    const previousDate = new Date(this.getStorageInformation("taskCreatedAt"));
+    const currentDate = this.dataCreated;
+    const differenceInTime = currentDate.getTime() - previousDate.getTime();
+    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+    if (differenceInDays > 1) {
+      localStorage.clear();
+      return true;
+    }
+    return false;
   }
 
   getStorageInformation(key: string) {
